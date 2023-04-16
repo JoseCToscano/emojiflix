@@ -5,10 +5,9 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-const user = useUser();
+    const user = useUser();
 
-const { data } = api.example.getAll.useQuery();
-
+    const { data} = api.posts.getAll.useQuery();
 
   return (
     <>
@@ -21,6 +20,9 @@ const { data } = api.example.getAll.useQuery();
         <div>
             {!user.isSignedIn && <SignInButton />}
             {!!user.isSignedIn && <SignOutButton /> }
+        </div>
+        <div>
+          {data?.map((post)=>(<div key={post.id}>{post.content}</div>))}
         </div>
       </main>
     </>
