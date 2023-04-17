@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useState } from 'react'
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -13,6 +14,9 @@ dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
   const { user } = useUser();
+  const [input, setInput] = useState("");
+
+  // const { mutate } = api.posts.create.useMutation();
 
   if(!user) return null;
 
@@ -25,7 +29,13 @@ const CreatePostWizard = () => {
           width={56}
           height={56}
          />
-        <input placeholder="Type some emojis!" className="bg-transparent grow outline-none"/>
+        <input
+          placeholder="Type some emojis!" 
+          className="bg-transparent grow outline-none"
+          type="text"
+          value={input}
+          onChange={(e)=>setInput(e.target.value)}
+        />
     </div>
   );
 };
