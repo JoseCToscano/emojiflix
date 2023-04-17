@@ -4,11 +4,12 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {SignInButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
+import type { RouterOutputs } from "~/utils/api";
+import { api } from "~/utils/api";
+import { LoadingPage } from "~/components/loading";
 
 dayjs.extend(relativeTime);
 
-import { api, RouterOutputs } from "~/utils/api";
-import { LoadingPage } from "~/components/loading";
 
 const CreatePostWizard = () => {
   const { user } = useUser();
@@ -69,7 +70,7 @@ const Feed = ()=>{
 }
 
 const Home: NextPage = () => {
-    const {user, isLoaded: userLoaded, isSignedIn} = useUser();
+    const { isLoaded: userLoaded, isSignedIn} = useUser();
     
     // Start fetching asap
     api.posts.getAll.useQuery();
