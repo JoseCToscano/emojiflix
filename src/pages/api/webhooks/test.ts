@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { postsRouter } from '~/server/api/routers/posts';
-import { webhookRouter } from '~/server/api/routers/webhookHandler';
 import { prisma } from "~/server/db";
 
-
-import { api } from "~/utils/api";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +10,7 @@ export default async function handler(
   if (req.method === 'POST') {
     
 const caller = postsRouter.createCaller({
-  prisma, userId: 'user_2OWTrl2fJzFfbLlO41CBXUU0J0o'
+  prisma, userId: 'user_2OWTrl2fJzFfbLlO41CBXUU0J0o' // Hardcoded
 }); 
 
 const content = ["😒","🥵","😂","🇪🇸","🇩🇪","😩","😁","😳","😉","😑","🙈","🎶"];
